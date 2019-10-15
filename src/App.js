@@ -27,10 +27,11 @@ class App extends React.Component {
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${config.API_KEY}&sort=popularity`
       );
       const data = await res.json();
+      console.log(data);
       this.setState(state => {
         return {
           ...state,
-          fonts: [...data.items.slice(0, 5)]
+          fonts: [...data.items.slice(0, 50)]
         };
       });
     } catch (err) {
@@ -46,11 +47,14 @@ class App extends React.Component {
         <Header />
         <OptionsBar />
         <CardGrid>
-          {fonts.map(font => {
-            console.dir(font);
+          {fonts.map((font, i) => {
+            // console.dir(font);
+            const family = font.family.replace(/ /g, "+");
+            const url = `https://fonts.googleapis.com/css?family=${family}`;
             return (
-              <FontCard fontFamily={font.family}>
-                <div>{font.family}</div>
+              <FontCard key={i}>
+                <link rel="stylesheet" href={url} />
+                <div style={{ fontFamily: font.family }}>{font.family}</div>
               </FontCard>
             );
           })}
