@@ -1,29 +1,19 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
-import Header from "./Header";
-import OptionsBar from "./OptionsBar";
-import CardGrid from "./CardGrid";
-import Footer from "./Footer";
+import Header from "./components/Header";
+import OptionsBar from "./components/OptionsBar";
+import Footer from "./components/Footer";
 
-const theme = {
-  color1: "blue"
-};
-
-// const Example = styled.h1`
-//   ${({ theme: { color1 } }) => css`
-//     font-size: 50px;
-//     color: ${color1};
-//   `}
-// `;
+import { Theme, CardGrid } from "./styled-components";
 
 class App extends React.Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={Theme}>
         <Header />
         <OptionsBar />
-        <CardGrid />
+        <CardGrid>{/* Some cards here */}</CardGrid>
         <Footer />
       </ThemeProvider>
     );
