@@ -1,0 +1,36 @@
+////////////////////
+// Initial Page Load
+////////////////////
+
+- get data from API
+
+- insert link tags requesting fonts into <head /> (enough to fill at least a page, initial page load so in order of popularity)
+
+- render font cards for these (once corresponding fonts are confirmed to have loaded)
+
+- lazy load font cards as user scrolls down page (insert new link tags into <head /> and make corresponding font cards visible once fonts are confirmed to have loaded)
+
+
+
+//////////////////
+// Search / Filter
+//////////////////
+
+- filter font list based on input text
+
+- render font cards based on filtered list with example text hidden/transparent for any which have not yet been loaded
+
+- insert link tags to request fonts for any cards that do not have corresponding link tags already in head
+
+- make example text in corresponding cards visible once confirmed that corresponding fonts have loaded
+
+
+
+
+***********************************
+
+In state we'll have an array for the full list of fonts from API plus a second array which cards will be rendered from.
+
+The second list will be updated on change event for search input based on input text.
+
+If search input is empty on change event either render from first array (full font list) or filter function will just return array matching full list.
