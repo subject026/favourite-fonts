@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { Helmet } from "react-helmet";
 
 import Header from "./components/Header";
 import OptionsBar from "./components/OptionsBar";
@@ -27,11 +28,13 @@ class App extends React.Component {
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${config.API_KEY}&sort=popularity`
       );
       const data = await res.json();
-      console.log(data);
+      const fonts = data.items.filter(item =>
+        item.variants.includes("regular")
+      );
       this.setState(state => {
         return {
           ...state,
-          fonts: [...data.items.slice(0, 50)]
+          fonts: [...data.items.slice(800)]
         };
       });
     } catch (err) {
@@ -43,17 +46,40 @@ class App extends React.Component {
     const { fonts } = this.state;
     return (
       <ThemeProvider theme={Theme}>
+        <Helmet>
+          <title>Moose</title>
+          {fonts.map((font, i) => {
+            console.dir(font);
+            const family = font.family.replace(/ /g, "+");
+            const variant = font.variants.includes("regular")
+              ? ":regular"
+              : font.variants.includes("300")
+              ? ":300"
+              : "";
+            /*
+              Coda Caption
+              UniFrakturCook
+              Molle
+            */
+            const url = `https://fonts.googleapis.com/css?family=${family}${variant}`;
+            return <link rel="stylesheet" href={url} key={url} />;
+          })}
+        </Helmet>
         <GlobalStyle />
         <Header />
         <OptionsBar />
+        <button
+          onClick={() => {
+            console.log(document.fonts);
+          }}
+        >
+          boom
+        </button>
         <CardGrid>
           {fonts.map((font, i) => {
             // console.dir(font);
-            const family = font.family.replace(/ /g, "+");
-            const url = `https://fonts.googleapis.com/css?family=${family}`;
             return (
               <FontCard key={i}>
-                <link rel="stylesheet" href={url} />
                 <div style={{ fontFamily: font.family }}>{font.family}</div>
               </FontCard>
             );
