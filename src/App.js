@@ -19,7 +19,9 @@ const GlobalStyle = createGlobalStyle`
 
 class App extends React.Component {
   state = {
-    fonts: []
+    allFonts: [],
+    filteredFonts: [],
+    fontUrls: []
   };
 
   componentDidMount = async () => {
@@ -28,13 +30,31 @@ class App extends React.Component {
         `https://www.googleapis.com/webfonts/v1/webfonts?key=${config.API_KEY}&sort=popularity`
       );
       const data = await res.json();
-      const fonts = data.items.filter(item =>
-        item.variants.includes("regular")
-      );
+      const allFonts = data.items.map(font => {
+        const { family } = font;
+        const urlFamily = family.replace(/ /g, "+");
+        const variant = font.variants.includes("regular")
+          ? ":regular"
+          : font.variants.includes("300")
+          ? ":300"
+          : "";
+        /*
+          Above doesn't cover these fonts:
+
+            - Coda Caption
+            - UniFrakturCook
+            - Molle
+        */
+        const url = `https://fonts.googleapis.com/css?family=${urlFamily}${variant}`;
+        return {
+          family,
+          url
+        };
+      });
       this.setState(state => {
         return {
           ...state,
-          fonts: [...data.items.slice(800)]
+          allFonts
         };
       });
     } catch (err) {
@@ -43,43 +63,22 @@ class App extends React.Component {
   };
 
   render() {
-    const { fonts } = this.state;
+    const { allFonts } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
           <title>Moose</title>
-          {fonts.map((font, i) => {
-            console.dir(font);
-            const family = font.family.replace(/ /g, "+");
-            const variant = font.variants.includes("regular")
-              ? ":regular"
-              : font.variants.includes("300")
-              ? ":300"
-              : "";
-            /*
-              Coda Caption
-              UniFrakturCook
-              Molle
-            */
-            const url = `https://fonts.googleapis.com/css?family=${family}${variant}`;
-            return <link rel="stylesheet" href={url} key={url} />;
-          })}
+          {/* {test.map(font => {
+            return <link rel="stylesheet" href={font.url} key={font.url} />;
+          })} */}
         </Helmet>
         <GlobalStyle />
         <Header />
         <OptionsBar />
-        <button
-          onClick={() => {
-            console.log(document.fonts);
-          }}
-        >
-          boom
-        </button>
         <CardGrid>
-          {fonts.map((font, i) => {
-            // console.dir(font);
+          {allFonts.map(font => {
             return (
-              <FontCard key={i}>
+              <FontCard key={`${font.family}_card`}>
                 <div style={{ fontFamily: font.family }}>{font.family}</div>
               </FontCard>
             );
