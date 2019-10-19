@@ -8,7 +8,8 @@ import Footer from "./components/Footer";
 
 import getFonts from "./network/getFonts";
 
-import { Theme, CardGrid, FontCard } from "./styled-components";
+import { Theme, CardGrid } from "./styled-components";
+import FontCard from "./components/FontCard/index";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -26,6 +27,7 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     const allFonts = await getFonts();
+    // !!! do something to handle this
     // if API call fails this will return undefined
     if (allFonts) {
       this.setState(state => {
@@ -37,14 +39,28 @@ class App extends React.Component {
     }
   };
 
+  handleCardInView = fontUrl => {
+    console.log(fontUrl);
+    // console.log(fontUrl, "includes? ", this.state.fontUrls.includes(fontUrl));
+    console.log("boom");
+    // this.setState(state => {
+    //   const { fontUrls } = state;
+    //   return {
+    //     ...state,
+    //     fontUrls: [...fontUrls, fontUrl]
+    //   };
+    // });
+  };
+
   render() {
-    const { allFonts } = this.state;
+    const { allFonts, fontUrls } = this.state;
+    // console.log(fontUrls);
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
           <title>Moose</title>
-          {/* {test.map(font => {
-            return <link rel="stylesheet" href={font.url} key={font.url} />;
+          {/* {fontUrls.map(url => {
+            return <link rel="stylesheet" href={url} key={url} />;
           })} */}
         </Helmet>
         <GlobalStyle />
@@ -52,10 +68,14 @@ class App extends React.Component {
         <OptionsBar />
         <CardGrid>
           {allFonts.map(font => {
+            const fontNotLoaded = !fontUrls.includes(font.family);
             return (
-              <FontCard key={`${font.family}_card`}>
-                <div style={{ fontFamily: font.family }}>{font.family}</div>
-              </FontCard>
+              <FontCard
+                family={font.family}
+                url={font.url}
+                fontNotLoaded={fontNotLoaded}
+                handleCardInView={this.handleCardInView}
+              />
             );
           })}
         </CardGrid>
