@@ -1,7 +1,9 @@
 NEXT.....
 
 
-1. intersection observer: see react-intersection-observer
+*** Want observer to start once component is MOUNTED.....
+
+https://scotch.io/tutorials/infinite-scroll-in-react-using-intersection-observer
 
 
 
