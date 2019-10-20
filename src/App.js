@@ -19,13 +19,26 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends React.Component {
-  state = {
-    allFonts: [],
-    filteredFonts: [],
-    fontUrls: []
-  };
+  constructor() {
+    super();
+    this.state = {
+      allFonts: [],
+      filteredFonts: [],
+      fontUrls: []
+    };
 
-  componentDidMount = async () => {
+    // Set up observer
+    this.observer = new IntersectionObserver(
+      this.handleObservation //callback
+      // {
+      //   root: null,
+      //   rootMargin: "600px",
+      //   threshold: 1
+      // }
+    );
+  }
+
+  async componentDidMount() {
     const allFonts = await getFonts();
     // !!! do something to handle this
     // if API call fails this will return undefined
@@ -37,19 +50,26 @@ class App extends React.Component {
         };
       });
     }
+  }
+
+  addObserverTarget = target => {
+    this.observer.observe(target);
   };
 
-  handleCardInView = fontUrl => {
-    console.log(fontUrl);
-    // console.log(fontUrl, "includes? ", this.state.fontUrls.includes(fontUrl));
-    console.log("boom");
-    // this.setState(state => {
-    //   const { fontUrls } = state;
-    //   return {
-    //     ...state,
-    //     fontUrls: [...fontUrls, fontUrl]
-    //   };
-    // });
+  handleObservation = entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fontUrl = entry.target.attributes["data-url"].value;
+        this.observer.unobserve(entry.target);
+        this.setState(state => {
+          const { fontUrls } = state;
+          return {
+            ...state,
+            fontUrls: [...fontUrls, fontUrl]
+          };
+        });
+      }
+    });
   };
 
   render() {
@@ -59,9 +79,9 @@ class App extends React.Component {
       <ThemeProvider theme={Theme}>
         <Helmet>
           <title>Moose</title>
-          {/* {fontUrls.map(url => {
+          {fontUrls.map(url => {
             return <link rel="stylesheet" href={url} key={url} />;
-          })} */}
+          })}
         </Helmet>
         <GlobalStyle />
         <Header />
@@ -71,10 +91,11 @@ class App extends React.Component {
             const fontNotLoaded = !fontUrls.includes(font.family);
             return (
               <FontCard
+                key={`${font.family}_card`}
                 family={font.family}
                 url={font.url}
                 fontNotLoaded={fontNotLoaded}
-                handleCardInView={this.handleCardInView}
+                addObserverTarget={this.addObserverTarget}
               />
             );
           })}

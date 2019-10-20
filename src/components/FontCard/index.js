@@ -1,27 +1,24 @@
 import React from "react";
-import { InView } from "react-intersection-observer";
 
 import { StyledFontCard } from "../../styled-components";
 
-const FontCard = ({ family, url, fontNotLoaded, handleCardInView }) => {
-  console.log(fontNotLoaded);
-  if (fontNotLoaded)
+class FontCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+  componentDidMount = () => {
+    this.props.addObserverTarget(this.ref.current);
+  };
+
+  render() {
+    const { family, url } = this.props;
     return (
-      <InView
-        key={`${family}_card`}
-        onChange={() => handleCardInView(url)}
-        triggerOnce={true}
-      >
-        <StyledFontCard>
-          <div style={{ fontFamily: family }}>{family}</div>
-        </StyledFontCard>
-      </InView>
+      <StyledFontCard ref={this.ref} data-url={url}>
+        <div style={{ fontFamily: family }}>{family}</div>
+      </StyledFontCard>
     );
-  return (
-    <StyledFontCard>
-      <div style={{ fontFamily: family }}>{family}</div>
-    </StyledFontCard>
-  );
-};
+  }
+}
 
 export default FontCard;
