@@ -8,16 +8,17 @@ class FontCard extends React.Component {
     this.ref = React.createRef();
   }
   componentDidMount = () => {
-    const { fontNotLoaded } = this.props;
+    const { fontLoadRequested } = this.props;
     // Only need to observe if font hasn't yet been loaded
-    if (fontNotLoaded) this.props.addObserverTarget(this.ref.current);
+    if (!fontLoadRequested) this.props.addObserverTarget(this.ref.current);
   };
 
   render() {
-    const { family, url } = this.props;
+    const { family, url, fontIsLoaded } = this.props;
     return (
-      <StyledFontCard ref={this.ref} data-url={url}>
-        <div style={{ fontFamily: family }}>{family}</div>
+      <StyledFontCard ref={this.ref} data-url={url} fontIsLoaded={fontIsLoaded}>
+        {!fontIsLoaded && <h3>Loading...</h3>}
+        {fontIsLoaded && <div style={{ fontFamily: family }}>{family}</div>}
       </StyledFontCard>
     );
   }

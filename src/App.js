@@ -10,6 +10,7 @@ import getFonts from "./network/getFonts";
 
 import { Theme, CardGrid } from "./styled-components";
 import FontCard from "./components/FontCard/index";
+import FontLink from "./components/FontLink";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -24,7 +25,8 @@ class App extends React.Component {
     this.state = {
       allFonts: [],
       filteredFonts: [],
-      fontUrls: []
+      fontUrls: [],
+      loadedFonts: []
     };
 
     // Set up observer
@@ -72,28 +74,46 @@ class App extends React.Component {
     });
   };
 
+  handleFontLoaded = url => {
+    this.setState(state => {
+      const { loadedFonts } = state;
+      return {
+        ...state,
+        loadedFonts: [...loadedFonts, url]
+      };
+    });
+  };
+
   render() {
-    const { allFonts, fontUrls } = this.state;
+    const { allFonts, fontUrls, loadedFonts } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
           <title>Moose</title>
-          {fontUrls.map(url => {
-            return <link rel="stylesheet" href={url} key={url} />;
-          })}
         </Helmet>
         <GlobalStyle />
         <Header />
         <OptionsBar />
+        {fontUrls.map(url => {
+          return (
+            <FontLink
+              key={url}
+              url={url}
+              handleFontLoaded={this.handleFontLoaded}
+            />
+          );
+        })}
         <CardGrid>
           {allFonts.map(font => {
-            const fontNotLoaded = !fontUrls.includes(font.family);
+            const fontLoadRequested = fontUrls.includes(font.family);
+            const fontIsLoaded = loadedFonts.includes(font.url);
             return (
               <FontCard
                 key={`${font.family}_card`}
                 family={font.family}
                 url={font.url}
-                fontNotLoaded={fontNotLoaded}
+                fontLoadRequested={fontLoadRequested}
+                fontIsLoaded={fontIsLoaded}
                 addObserverTarget={this.addObserverTarget}
               />
             );
