@@ -8,7 +8,9 @@ class FontCard extends React.Component {
     this.ref = React.createRef();
   }
   componentDidMount = () => {
-    this.props.addObserverTarget(this.ref.current);
+    const { fontNotLoaded } = this.props;
+    // Only need to observe if font hasn't yet been loaded
+    if (fontNotLoaded) this.props.addObserverTarget(this.ref.current);
   };
 
   render() {

@@ -74,7 +74,6 @@ class App extends React.Component {
 
   render() {
     const { allFonts, fontUrls } = this.state;
-    // console.log(fontUrls);
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
