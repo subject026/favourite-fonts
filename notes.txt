@@ -1,5 +1,8 @@
 NEXT.....
 
+
+>>> duplicate key issue, looks like font <link>s are being duplicated
+
 *** Look at font CSS being loaded... making more than one request!!! ***
 
 
