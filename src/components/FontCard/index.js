@@ -20,9 +20,7 @@ class FontCard extends React.Component {
         <span>{family}</span>
         {!fontIsLoaded && <h3>Loading...</h3>}
         {fontIsLoaded && (
-          <div style={{ fontFamily: family, fontSize: `${fontSize}px` }}>
-            {exampleText}
-          </div>
+          <div style={{ fontFamily: family, fontSize }}>{exampleText}</div>
         )}
       </StyledFontCard>
     );

@@ -29,7 +29,7 @@ class App extends React.Component {
       loadedFonts: [],
       exampleText: "Then came the night of the first fallen star.",
       searchText: "",
-      fontSize: "20"
+      fontSize: "20px"
     };
 
     // Set up observer
@@ -118,7 +118,6 @@ class App extends React.Component {
 
   handleSearchTextChange = event => {
     const { value } = event.target;
-    console.log("search text changing... new value: ", value);
     this.setState(state => {
       return {
         ...state,
@@ -142,6 +141,7 @@ class App extends React.Component {
       filteredFonts,
       fontUrls,
       loadedFonts,
+      searchText,
       exampleText,
       fontSize
     } = this.state;
@@ -153,6 +153,8 @@ class App extends React.Component {
         <GlobalStyle />
         <Header />
         <OptionsBar
+          searchText={searchText}
+          fontSize={fontSize}
           handleSearchTextChange={this.handleSearchTextChange}
           handleExampleTextChange={this.handleExampleTextChange}
           handleFontSizeChange={this.handleFontSizeChange}

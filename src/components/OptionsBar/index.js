@@ -4,8 +4,9 @@ class OptionsBar extends React.Component {
   render() {
     const {
       searchText,
-      handleSearchTextChange,
       exampleText,
+      fontSize,
+      handleSearchTextChange,
       handleExampleTextChange,
       handleFontSizeChange
     } = this.props;
@@ -23,11 +24,16 @@ class OptionsBar extends React.Component {
           value={exampleText}
           onChange={handleExampleTextChange}
         />
-        <select name="font-size" id="font-size" onChange={handleFontSizeChange}>
-          <option value="20">20px</option>
-          <option value="24">24px</option>
-          <option value="32">32px</option>
-          <option value="40">40px</option>
+        <select
+          name="font-size"
+          id="font-size"
+          value={fontSize}
+          onChange={handleFontSizeChange}
+        >
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+          <option value="32px">32px</option>
+          <option value="40px">40px</option>
         </select>
       </section>
     );
