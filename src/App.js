@@ -38,15 +38,9 @@ class App extends React.Component {
       fontSize: "20px"
     };
 
-    // Set up observer
-    this.observer = new IntersectionObserver(
-      this.handleObservation //callback
-      // {
-      //   root: null,
-      //   rootMargin: "600px",
-      //   threshold: 1
-      // }
-    );
+    this.observer = new IntersectionObserver(this.handleObservation, {
+      rootMargin: "600px"
+    });
   }
 
   async componentDidMount() {
