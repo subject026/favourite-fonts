@@ -6,7 +6,7 @@ TODOS
 - implement reset button
 
 
-
+- tweak intersection observer threshold / root margin
 
 
 ======
