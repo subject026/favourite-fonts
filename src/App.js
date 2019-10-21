@@ -26,7 +26,8 @@ class App extends React.Component {
       allFonts: [],
       filteredFonts: [],
       fontUrls: [],
-      loadedFonts: []
+      loadedFonts: [],
+      exampleText: "Type something"
     };
 
     // Set up observer
@@ -84,8 +85,19 @@ class App extends React.Component {
     });
   };
 
+  handleExampleTextChange = event => {
+    const { value } = event.target;
+    const newValue = value === "" ? "Type something" : value;
+    this.setState(state => {
+      return {
+        ...state,
+        exampleText: newValue
+      };
+    });
+  };
+
   render() {
-    const { allFonts, fontUrls, loadedFonts } = this.state;
+    const { allFonts, fontUrls, loadedFonts, exampleText } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
@@ -93,7 +105,7 @@ class App extends React.Component {
         </Helmet>
         <GlobalStyle />
         <Header />
-        <OptionsBar />
+        <OptionsBar handleExampleTextChange={this.handleExampleTextChange} />
         {fontUrls.map(url => {
           return (
             <FontLink
@@ -115,6 +127,7 @@ class App extends React.Component {
                 fontLoadRequested={fontLoadRequested}
                 fontIsLoaded={fontIsLoaded}
                 addObserverTarget={this.addObserverTarget}
+                exampleText={exampleText}
               />
             );
           })}
