@@ -2,11 +2,9 @@
 TODOS
 =====
 
+>>> Switch font loading to <style> tags with url()
 
-- implement reset button
 
-
-- tweak intersection observer threshold / root margin
 
 
 ======
@@ -14,6 +12,5 @@ ISSUES
 ======
 
 
->>> duplicate key issue, looks like font <link>s are being duplicated... FONTS ARE BEING LOADED MORE THAN ONCE!!!
 
->>> Look at font CSS being loaded... making more than one request!!! Try doing <style> with url(...)
+...
