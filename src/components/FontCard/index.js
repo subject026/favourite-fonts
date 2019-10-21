@@ -17,6 +17,7 @@ class FontCard extends React.Component {
     const { family, url, fontIsLoaded, exampleText } = this.props;
     return (
       <StyledFontCard ref={this.ref} data-url={url} fontIsLoaded={fontIsLoaded}>
+        <span>{family}</span>
         {!fontIsLoaded && <h3>Loading...</h3>}
         {fontIsLoaded && (
           <div style={{ fontFamily: family }}>{exampleText}</div>

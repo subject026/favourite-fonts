@@ -27,7 +27,8 @@ class App extends React.Component {
       filteredFonts: [],
       fontUrls: [],
       loadedFonts: [],
-      exampleText: "Type something"
+      exampleText: "Then came the night of the first fallen star.",
+      searchText: ""
     };
 
     // Set up observer
@@ -51,7 +52,7 @@ class App extends React.Component {
           ...state,
           allFonts
         };
-      });
+      }, this.filterFonts);
     }
   }
 
@@ -87,7 +88,8 @@ class App extends React.Component {
 
   handleExampleTextChange = event => {
     const { value } = event.target;
-    const newValue = value === "" ? "Type something" : value;
+    const newValue =
+      value === "" ? "Then came the night of the first fallen star." : value;
     this.setState(state => {
       return {
         ...state,
@@ -96,8 +98,36 @@ class App extends React.Component {
     });
   };
 
+  handleSearchTextChange = event => {
+    const { value } = event.target;
+    console.log("search text changing... new value: ", value);
+    this.setState(state => {
+      return {
+        ...state,
+        searchText: value
+      };
+    }, this.filterFonts);
+  };
+
+  filterFonts = () => {
+    const { allFonts, searchText } = this.state;
+    let filteredFonts;
+    if (searchText.length < 1) {
+      filteredFonts = [...allFonts];
+    } else {
+      const filter = new RegExp(`${searchText}`, "i");
+      filteredFonts = allFonts.filter(font => filter.test(font.family));
+    }
+    this.setState(state => {
+      return {
+        ...state,
+        filteredFonts: [...filteredFonts]
+      };
+    });
+  };
+
   render() {
-    const { allFonts, fontUrls, loadedFonts, exampleText } = this.state;
+    const { filteredFonts, fontUrls, loadedFonts, exampleText } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
@@ -105,18 +135,21 @@ class App extends React.Component {
         </Helmet>
         <GlobalStyle />
         <Header />
-        <OptionsBar handleExampleTextChange={this.handleExampleTextChange} />
+        <OptionsBar
+          handleSearchTextChange={this.handleSearchTextChange}
+          handleExampleTextChange={this.handleExampleTextChange}
+        />
         {fontUrls.map(url => {
           return (
             <FontLink
-              key={url}
+              key={`${url}_url`}
               url={url}
               handleFontLoaded={this.handleFontLoaded}
             />
           );
         })}
         <CardGrid>
-          {allFonts.map(font => {
+          {filteredFonts.map(font => {
             const fontLoadRequested = fontUrls.includes(font.family);
             const fontIsLoaded = loadedFonts.includes(font.url);
             return (

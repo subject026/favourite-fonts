@@ -2,10 +2,20 @@ import React from "react";
 
 class OptionsBar extends React.Component {
   render() {
-    const { exampleText, handleExampleTextChange } = this.props;
+    const {
+      searchText,
+      handleSearchTextChange,
+      exampleText,
+      handleExampleTextChange
+    } = this.props;
     return (
       <section>
-        <p>Options Bar</p>
+        <input
+          type="text"
+          placeholder="Search fonts"
+          value={searchText}
+          onChange={handleSearchTextChange}
+        />
         <input
           type="text"
           placeholder="Type something"
