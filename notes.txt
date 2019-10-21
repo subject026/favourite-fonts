@@ -1,12 +1,6 @@
 NEXT.....
 
-
-*** Want observer to start once component is MOUNTED.....
-
-https://scotch.io/tutorials/infinite-scroll-in-react-using-intersection-observer
-
-
-
+*** Look at font CSS being loaded... making more than one request!!! ***
 
 
 _____________________________________________________________________________________
