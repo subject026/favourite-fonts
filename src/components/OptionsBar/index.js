@@ -8,7 +8,8 @@ class OptionsBar extends React.Component {
       fontSize,
       handleSearchTextChange,
       handleExampleTextChange,
-      handleFontSizeChange
+      handleFontSizeChange,
+      handleOptionsReset
     } = this.props;
     return (
       <section>
@@ -35,6 +36,7 @@ class OptionsBar extends React.Component {
           <option value="32px">32px</option>
           <option value="40px">40px</option>
         </select>
+        <button onClick={handleOptionsReset}>reset</button>
       </section>
     );
   }

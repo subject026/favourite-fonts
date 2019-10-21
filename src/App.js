@@ -19,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const initialState = {
+  exampleText: "Then came the night of the first fallen star.",
+  searchText: "",
+  fontSize: "20px"
+};
+
 class App extends React.Component {
   constructor() {
     super();
@@ -136,6 +142,15 @@ class App extends React.Component {
     });
   };
 
+  handleOptionsReset = () => {
+    this.setState(state => {
+      return {
+        ...state,
+        ...initialState
+      };
+    }, this.filterFonts);
+  };
+
   render() {
     const {
       filteredFonts,
@@ -154,10 +169,14 @@ class App extends React.Component {
         <Header />
         <OptionsBar
           searchText={searchText}
+          exampleText={
+            exampleText === initialState.exampleText ? "" : exampleText
+          }
           fontSize={fontSize}
           handleSearchTextChange={this.handleSearchTextChange}
           handleExampleTextChange={this.handleExampleTextChange}
           handleFontSizeChange={this.handleFontSizeChange}
+          handleOptionsReset={this.handleOptionsReset}
         />
         {fontUrls.map(url => {
           return (
