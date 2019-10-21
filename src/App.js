@@ -28,7 +28,8 @@ class App extends React.Component {
       fontUrls: [],
       loadedFonts: [],
       exampleText: "Then came the night of the first fallen star.",
-      searchText: ""
+      searchText: "",
+      fontSize: "20"
     };
 
     // Set up observer
@@ -55,6 +56,23 @@ class App extends React.Component {
       }, this.filterFonts);
     }
   }
+
+  filterFonts = () => {
+    const { allFonts, searchText } = this.state;
+    let filteredFonts;
+    if (searchText.length < 1) {
+      filteredFonts = [...allFonts];
+    } else {
+      const filter = new RegExp(`${searchText}`, "i");
+      filteredFonts = allFonts.filter(font => filter.test(font.family));
+    }
+    this.setState(state => {
+      return {
+        ...state,
+        filteredFonts: [...filteredFonts]
+      };
+    });
+  };
 
   addObserverTarget = target => {
     this.observer.observe(target);
@@ -109,25 +127,24 @@ class App extends React.Component {
     }, this.filterFonts);
   };
 
-  filterFonts = () => {
-    const { allFonts, searchText } = this.state;
-    let filteredFonts;
-    if (searchText.length < 1) {
-      filteredFonts = [...allFonts];
-    } else {
-      const filter = new RegExp(`${searchText}`, "i");
-      filteredFonts = allFonts.filter(font => filter.test(font.family));
-    }
+  handleFontSizeChange = event => {
+    const { value } = event.target;
     this.setState(state => {
       return {
         ...state,
-        filteredFonts: [...filteredFonts]
+        fontSize: value
       };
     });
   };
 
   render() {
-    const { filteredFonts, fontUrls, loadedFonts, exampleText } = this.state;
+    const {
+      filteredFonts,
+      fontUrls,
+      loadedFonts,
+      exampleText,
+      fontSize
+    } = this.state;
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
@@ -138,6 +155,7 @@ class App extends React.Component {
         <OptionsBar
           handleSearchTextChange={this.handleSearchTextChange}
           handleExampleTextChange={this.handleExampleTextChange}
+          handleFontSizeChange={this.handleFontSizeChange}
         />
         {fontUrls.map(url => {
           return (
@@ -161,6 +179,7 @@ class App extends React.Component {
                 fontIsLoaded={fontIsLoaded}
                 addObserverTarget={this.addObserverTarget}
                 exampleText={exampleText}
+                fontSize={fontSize}
               />
             );
           })}
