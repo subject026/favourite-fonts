@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 export const Theme = {
-  color1: "blue"
+  layout: {
+    padding: "15px"
+  },
+  colors: {
+    lightGrey: "rgba(0,0,0, 0.6)",
+    medGrey: "#3c4043",
+    darkGrey: "rgba(0,0,0, 0.87)" // thin borders
+  }
 };
 
 export const CardGrid = styled.section`
