@@ -1,16 +1,3 @@
-=====
-TODOS
-=====
-
->>> Switch font loading to <style> tags with url()
 
 
-
-
-======
-ISSUES
-======
-
-
-
-...
+>>> Maybe switch font loading to <style> tags with url()
