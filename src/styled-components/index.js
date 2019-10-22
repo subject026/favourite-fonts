@@ -5,6 +5,7 @@ export const Theme = {
     padding: "15px"
   },
   colors: {
+    lighterGrey: "rgba(0,0,0, 0.14)",
     lightGrey: "rgba(0,0,0, 0.6)",
     medGrey: "#3c4043",
     darkGrey: "rgba(0,0,0, 0.87)" // thin borders
