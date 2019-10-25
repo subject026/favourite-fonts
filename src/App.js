@@ -46,6 +46,13 @@ export const CardGrid = styled.section`
   }
 `;
 
+const BackToTopButton = styled.button`
+  padding: 30px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+`;
+
 const initialState = {
   exampleText: "Then came the night of the first fallen star.",
   searchText: "",
@@ -170,6 +177,14 @@ class App extends React.Component {
     }, this.filterFonts);
   };
 
+  handleBackToTopClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
+
   render() {
     const {
       filteredFonts,
@@ -182,6 +197,9 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
+        <BackToTopButton onClick={this.handleBackToTopClick}>
+          back to top
+        </BackToTopButton>
         <Header />
         <OptionsBar
           searchText={searchText}
