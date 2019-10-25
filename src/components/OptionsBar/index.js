@@ -1,4 +1,21 @@
 import React from "react";
+import styled from "styled-components";
+import { css } from "styled-components";
+
+import SearchIcon from "./SearchIcon";
+
+const OptionsBarContainer = styled.section`
+  ${({ theme }) => css`
+    padding: 20px ${theme.layout.padding};
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  `}
+`;
+
+const SearchBlock = styled.label`
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+`;
 
 class OptionsBar extends React.Component {
   render() {
@@ -12,13 +29,17 @@ class OptionsBar extends React.Component {
       handleOptionsReset
     } = this.props;
     return (
-      <section>
-        <input
-          type="text"
-          placeholder="Search fonts"
-          value={searchText}
-          onChange={handleSearchTextChange}
-        />
+      <OptionsBarContainer>
+        <SearchBlock htmlFor="search">
+          <SearchIcon />
+          <input
+            id="search"
+            type="text"
+            placeholder="Search fonts"
+            value={searchText}
+            onChange={handleSearchTextChange}
+          />
+        </SearchBlock>
         <input
           type="text"
           placeholder="Type something"
@@ -39,7 +60,7 @@ class OptionsBar extends React.Component {
           <option value="80px">80px</option>
         </select>
         <button onClick={handleOptionsReset}>reset</button>
-      </section>
+      </OptionsBarContainer>
     );
   }
 }
