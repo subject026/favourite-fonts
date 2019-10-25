@@ -31,11 +31,21 @@ class FontCard extends React.Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
+    this.initialExampleText = props.exampleText;
   }
   componentDidMount = () => {
     const { fontLoadRequested } = this.props;
     // Only need to observe if font hasn't yet been loaded
     if (!fontLoadRequested) this.props.addObserverTarget(this.ref.current);
+  };
+
+  componentDidUpdate = () => {
+    this.initialExampleText = this.props.exampleText;
+  };
+
+  handleIndividualSampleBlur = event => {
+    if (event.target.innerHTML === "")
+      event.target.innerHTML = this.initialExampleText;
   };
 
   render() {
@@ -48,7 +58,11 @@ class FontCard extends React.Component {
         </FontCardHeader>
         {!fontIsLoaded && <h3>Loading...</h3>}
         {fontIsLoaded && (
-          <Sampletext style={{ fontFamily: family, fontSize }}>
+          <Sampletext
+            contentEditable={true}
+            onBlur={this.handleIndividualSampleBlur}
+            style={{ fontFamily: family, fontSize }}
+          >
             {exampleText}
           </Sampletext>
         )}
