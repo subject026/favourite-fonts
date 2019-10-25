@@ -1,3 +1,12 @@
+STILL TO DO
+===========
 
 
->>> Maybe switch font loading to <style> tags with url()
+>>> Make add icon into button
+>>> add back to top button
+>>> buttons should have hover state
+
+---
+
+>>> add grid/list button
+>>> add light/darkmode button
