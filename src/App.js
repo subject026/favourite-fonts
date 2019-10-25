@@ -127,6 +127,7 @@ class App extends React.Component {
 
   handleFontSizeChange = event => {
     const { value } = event.target;
+    console.log("boom");
     this.setState(state => {
       return {
         ...state,

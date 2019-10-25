@@ -4,13 +4,17 @@ import styled from "styled-components";
 const Button = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const ResetButton = () => {
+const ResetButton = ({ handleOptionsReset }) => {
   return (
-    <Button>
+    <Button onClick={handleOptionsReset}>
       <svg width="24" height="24" fill="none">
         <path fill="#fff" d="M0 0h24v24H0z" />
         <path

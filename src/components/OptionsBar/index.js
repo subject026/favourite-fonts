@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-import SearchIcon from "./SearchIcon";
+import SearchInput from "./SearchInput";
+import SampleTextInput from "./SampleTextInput";
 import ResetButton from "./ResetButton";
 import FontSizeSelect from "./FontSizeSelect";
 
@@ -26,11 +27,6 @@ const OptionsBarInner = styled.section`
   `}
 `;
 
-const SearchBlock = styled.label`
-  display: grid;
-  grid-template-columns: 1fr 6fr;
-`;
-
 export const OptionsBar = ({
   searchText,
   exampleText,
@@ -43,24 +39,16 @@ export const OptionsBar = ({
   return (
     <OptionsBarOuter>
       <OptionsBarInner>
-        <SearchBlock htmlFor="search">
-          <SearchIcon />
-          <input
-            id="search"
-            type="text"
-            placeholder="Search fonts"
-            value={searchText}
-            onChange={handleSearchTextChange}
-          />
-        </SearchBlock>
-        <input
-          type="text"
-          placeholder="Type something"
+        <SearchInput value={searchText} onChange={handleSearchTextChange} />
+        <SampleTextInput
           value={exampleText}
-          onChange={handleExampleTextChange}
+          handleExampleTextChange={handleExampleTextChange}
         />
-        <FontSizeSelect value={fontSize} onChange={handleFontSizeChange} />
-        <ResetButton onClick={handleOptionsReset} />
+        <FontSizeSelect
+          value={fontSize}
+          handleFontSizeChange={handleFontSizeChange}
+        />
+        <ResetButton handleOptionsReset={handleOptionsReset} />
       </OptionsBarInner>
     </OptionsBarOuter>
   );
