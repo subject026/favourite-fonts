@@ -1,10 +1,7 @@
 STILL TO DO
 ===========
 
-
->>> Make add icon into button
 >>> add back to top button
->>> buttons should have hover state
 
 ---
 
