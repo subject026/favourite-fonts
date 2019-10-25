@@ -6,6 +6,9 @@ const Select = styled.select`
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: ${props => props.theme.colors.lightGrey};
+  &:hover {
+    cursor: pointer;
+  }
   &:focus {
     color: ${props => props.theme.colors.darkGrey};
   }

@@ -27,7 +27,9 @@ export const Theme = {
     lighterGrey: "rgba(0,0,0, 0.3)",
     lightGrey: "rgba(0,0,0, 0.6)",
     medGrey: "#3c4043",
-    darkGrey: "rgba(0,0,0, 0.87)"
+    darkGrey: "rgba(0,0,0, 0.87)",
+    lightRed: "rgba(255, 82, 82, 0.8)",
+    red: "rgba(255, 82, 82, 1)"
   }
 };
 

@@ -10,13 +10,19 @@ const Button = styled.button`
   padding: 0;
   ${props => (props.type === "reset" ? "transform: translateX(10px);" : "")}
   path {
-    fill: rgba(0, 0, 0, 0.54);
+    fill: ${props =>
+      props.type === "add"
+        ? `${props.theme.colors.lightRed}`
+        : "rgba(0, 0, 0, 0.54)"};
     transition: fill 0.1s linear;
   }
   &:hover {
     cursor: pointer;
     path {
-      fill: rgba(0, 0, 0, 0.74);
+      fill: ${props =>
+        props.type === "add"
+          ? `${props.theme.colors.red}`
+          : "rgba(0, 0, 0, 0.74)"};
     }
   }
 `;
@@ -33,7 +39,7 @@ export const ResetButton = ({ handleOptionsReset }) => {
 
 export const AddButton = () => {
   return (
-    <Button>
+    <Button type="add">
       <svg width="24" height="24">
         <path
           fillRule="evenodd"
