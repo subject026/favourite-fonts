@@ -203,7 +203,6 @@ class App extends React.Component {
             );
           })}
         </CardGrid>
-        <Footer />
       </ThemeProvider>
     );
   }

@@ -2,15 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 
+import AddIcon from "./AddIcon";
+
 const FontCardContainer = styled.div`
   ${({ theme }) => {
     return css`
       min-height: 250px;
       border-top: 1px solid ${({ theme }) => theme.colors.lighterGrey};
-      .font-family {
-        height: 50px;
-        font-size: 1rem;
-      }
       .font-sample {
         display: inline-block;
         width: 100%;
@@ -19,6 +17,13 @@ const FontCardContainer = styled.div`
       }
     `;
   }}
+`;
+
+const FontCardHeader = styled.div`
+  font-size: 1rem;
+  padding: 10px 0 20px 0;
+  display: flex;
+  justify-content: space-between;
 `;
 
 class FontCard extends React.Component {
@@ -40,7 +45,10 @@ class FontCard extends React.Component {
         data-url={url}
         fontIsLoaded={fontIsLoaded}
       >
-        <div className="font-family">{family}</div>
+        <FontCardHeader className="font-family">
+          {family}
+          <AddIcon />
+        </FontCardHeader>
         {!fontIsLoaded && <h3>Loading...</h3>}
         {fontIsLoaded && (
           <span
