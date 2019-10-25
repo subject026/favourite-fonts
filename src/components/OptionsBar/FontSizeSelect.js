@@ -5,6 +5,10 @@ const Select = styled.select`
   padding: 0 15px;
   border: none;
   background-color: rgba(0, 0, 0, 0);
+  color: ${props => props.theme.colors.lightGrey};
+  &:focus {
+    color: ${props => props.theme.colors.darkGrey};
+  }
 `;
 
 const FontSizeSelect = ({ fontSize, handleFontSizeChange }) => {
