@@ -7,6 +7,7 @@ const Button = styled.button`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  transform: translateX(10px);
   &:hover {
     cursor: pointer;
   }
