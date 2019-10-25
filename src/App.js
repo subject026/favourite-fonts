@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 const initialState = {
   exampleText: "Then came the night of the first fallen star.",
   searchText: "",
-  fontSize: "20px"
+  fontSize: "40px"
 };
 
 class App extends React.Component {
@@ -34,9 +34,7 @@ class App extends React.Component {
       filteredFonts: [],
       fontUrls: [],
       loadedFonts: [],
-      exampleText: "Then came the night of the first fallen star.",
-      searchText: "",
-      fontSize: "20px"
+      ...initialState
     };
 
     this.observer = new IntersectionObserver(this.handleObservation, {
