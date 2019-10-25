@@ -1,6 +1,25 @@
 import React from "react";
+import styled from "styled-components";
+import { css } from "styled-components";
 
-import { StyledFontCard } from "../../styled-components";
+const FontCardContainer = styled.div`
+  ${({ theme }) => {
+    return css`
+      min-height: 250px;
+      border-top: 1px solid ${({ theme }) => theme.colors.lighterGrey};
+      .font-family {
+        height: 50px;
+        font-size: 1rem;
+      }
+      .font-sample {
+        display: inline-block;
+        width: 100%;
+        overflow-wrap: break-word;
+        line-height: 1.2;
+      }
+    `;
+  }}
+`;
 
 class FontCard extends React.Component {
   constructor(props) {
@@ -16,13 +35,22 @@ class FontCard extends React.Component {
   render() {
     const { family, url, fontIsLoaded, exampleText, fontSize } = this.props;
     return (
-      <StyledFontCard ref={this.ref} data-url={url} fontIsLoaded={fontIsLoaded}>
-        <span>{family}</span>
+      <FontCardContainer
+        ref={this.ref}
+        data-url={url}
+        fontIsLoaded={fontIsLoaded}
+      >
+        <div className="font-family">{family}</div>
         {!fontIsLoaded && <h3>Loading...</h3>}
         {fontIsLoaded && (
-          <div style={{ fontFamily: family, fontSize }}>{exampleText}</div>
+          <span
+            className="font-sample"
+            style={{ fontFamily: family, fontSize }}
+          >
+            {exampleText}
+          </span>
         )}
-      </StyledFontCard>
+      </FontCardContainer>
     );
   }
 }

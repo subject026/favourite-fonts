@@ -8,7 +8,7 @@ const HeaderStyled = styled.header`
       padding: 30px ${theme.layout.padding};
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid ${theme.colors.lighterGrey};
+      border-bottom: 1px solid ${theme.colors.lightestGrey};
 
       nav {
         display: flex;
