@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6a47ec61bb5781eb04480aff5d69c695",
+    "revision": "d21816e8772472591ab0a90359816589",
     "url": "/favourite-fonts/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/favourite-fonts/static/js/2.706afc61.chunk.js"
   },
   {
-    "revision": "05a2638035152f3ed9ad",
-    "url": "/favourite-fonts/static/js/main.eedde839.chunk.js"
+    "revision": "3003d9ade6dd23622e23",
+    "url": "/favourite-fonts/static/js/main.cbc7651e.chunk.js"
   },
   {
     "revision": "6ce2347a5f70533c1b4c",
