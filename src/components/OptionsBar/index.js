@@ -3,12 +3,26 @@ import styled from "styled-components";
 import { css } from "styled-components";
 
 import SearchIcon from "./SearchIcon";
+import ResetButton from "./ResetButton";
+import FontSizeSelect from "./FontSizeSelect";
 
-const OptionsBarContainer = styled.section`
+const OptionsBarOuter = styled.section`
   ${({ theme }) => css`
     padding: 20px ${theme.layout.padding};
+  `}
+`;
+
+const OptionsBarInner = styled.section`
+  ${({ theme }) => css`
+    height: 50px;
+    border-radius: 50px;
+    padding: 0px ${theme.layout.padding};
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    grid-template-columns: 300px minmax(0, 5fr) 100px 50px;
+    border: 1px solid ${theme.colors.lightestGrey};
+    input {
+      border: none;
+    }
   `}
 `;
 
@@ -17,19 +31,18 @@ const SearchBlock = styled.label`
   grid-template-columns: 1fr 6fr;
 `;
 
-class OptionsBar extends React.Component {
-  render() {
-    const {
-      searchText,
-      exampleText,
-      fontSize,
-      handleSearchTextChange,
-      handleExampleTextChange,
-      handleFontSizeChange,
-      handleOptionsReset
-    } = this.props;
-    return (
-      <OptionsBarContainer>
+export const OptionsBar = ({
+  searchText,
+  exampleText,
+  fontSize,
+  handleSearchTextChange,
+  handleExampleTextChange,
+  handleFontSizeChange,
+  handleOptionsReset
+}) => {
+  return (
+    <OptionsBarOuter>
+      <OptionsBarInner>
         <SearchBlock htmlFor="search">
           <SearchIcon />
           <input
@@ -46,23 +59,11 @@ class OptionsBar extends React.Component {
           value={exampleText}
           onChange={handleExampleTextChange}
         />
-        <select
-          name="font-size"
-          id="font-size"
-          value={fontSize}
-          onChange={handleFontSizeChange}
-        >
-          <option value="20px">20px</option>
-          <option value="24px">24px</option>
-          <option value="32px">32px</option>
-          <option value="40px">40px</option>
-          <option value="60px">60px</option>
-          <option value="80px">80px</option>
-        </select>
-        <button onClick={handleOptionsReset}>reset</button>
-      </OptionsBarContainer>
-    );
-  }
-}
+        <FontSizeSelect value={fontSize} onChange={handleFontSizeChange} />
+        <ResetButton onClick={handleOptionsReset} />
+      </OptionsBarInner>
+    </OptionsBarOuter>
+  );
+};
 
 export default OptionsBar;
