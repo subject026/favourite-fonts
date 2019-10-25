@@ -1,5 +1,6 @@
 import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { Helmet } from "react-helmet";
 
 import Header from "./components/Header";
@@ -7,7 +8,6 @@ import OptionsBar from "./components/OptionsBar";
 
 import getFonts from "./network/getFonts";
 
-import { Theme, CardGrid } from "./styled-components";
 import FontCard from "./components/FontCard/index";
 import FontLink from "./components/FontLink";
 
@@ -16,6 +16,32 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+  }
+`;
+
+export const Theme = {
+  layout: {
+    padding: "15px"
+  },
+  colors: {
+    lightestGrey: "rgba(0,0,0, 0.14)",
+    lighterGrey: "rgba(0,0,0, 0.3)",
+    lightGrey: "rgba(0,0,0, 0.6)",
+    medGrey: "#3c4043",
+    darkGrey: "rgba(0,0,0, 0.87)"
+  }
+};
+
+export const CardGrid = styled.section`
+  display: grid;
+  grid-gap: 30px;
+  padding: 30px ${({ theme }) => theme.layout.padding};
+  grid-template-columns: minmax(0, 1fr);
+  @media (min-width: 600px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  @media (min-width: 1100px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   }
 `;
 
