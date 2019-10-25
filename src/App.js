@@ -51,6 +51,7 @@ const BackToTopButton = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;
+  display: ${props => (props.windowAtTop ? "none" : "inline")};
 `;
 
 const initialState = {
@@ -63,6 +64,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      windowAtTop: true,
       allFonts: [],
       filteredFonts: [],
       fontUrls: [],
@@ -75,7 +77,29 @@ class App extends React.Component {
     });
   }
 
+  handleWindowScroll = () => {
+    const { windowAtTop } = this.state;
+    if (windowAtTop && window.scrollY > 50) {
+      this.setState(state => {
+        return {
+          ...state,
+          windowAtTop: false
+        };
+      });
+    }
+    if (!windowAtTop && window.scrollY < 50) {
+      this.setState(state => {
+        return {
+          ...state,
+          windowAtTop: true
+        };
+      });
+    }
+  };
+
   async componentDidMount() {
+    window.onscroll = this.handleWindowScroll;
+
     const allFonts = await getFonts();
     // !!! do something to handle this
     // if API call fails this will return undefined
@@ -187,6 +211,7 @@ class App extends React.Component {
 
   render() {
     const {
+      windowAtTop,
       filteredFonts,
       fontUrls,
       loadedFonts,
@@ -197,7 +222,10 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={Theme}>
         <GlobalStyle />
-        <BackToTopButton onClick={this.handleBackToTopClick}>
+        <BackToTopButton
+          windowAtTop={windowAtTop}
+          onClick={this.handleBackToTopClick}
+        >
           back to top
         </BackToTopButton>
         <Header />
