@@ -40,15 +40,15 @@ export const OptionsBar = ({
     <OptionsBarOuter>
       <OptionsBarInner>
         <SearchInput
-          value={searchText}
+          searchText={searchText}
           handleSearchTextChange={handleSearchTextChange}
         />
         <SampleTextInput
-          value={exampleText}
+          exampleText={exampleText}
           handleExampleTextChange={handleExampleTextChange}
         />
         <FontSizeSelect
-          value={fontSize}
+          fontSize={fontSize}
           handleFontSizeChange={handleFontSizeChange}
         />
         <ResetButton handleOptionsReset={handleOptionsReset} />
