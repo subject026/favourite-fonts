@@ -156,7 +156,7 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={Theme}>
         <Helmet>
-          <title>Moose</title>
+          <title>Favourite Fonts - subject026</title>
         </Helmet>
         <GlobalStyle />
         <Header />
