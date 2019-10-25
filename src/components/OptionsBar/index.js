@@ -4,7 +4,7 @@ import { css } from "styled-components";
 
 import SearchInput from "./SearchInput";
 import SampleTextInput from "./SampleTextInput";
-import ResetButton from "./ResetButton";
+import { ResetButton } from "../Buttons";
 import FontSizeSelect from "./FontSizeSelect";
 
 const OptionsBarOuter = styled.section`

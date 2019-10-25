@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-import AddButton from "./AddButton";
+import { AddButton } from "../Buttons";
 
 const FontCardContainer = styled.div`
   ${({ theme }) => {
@@ -41,11 +41,7 @@ class FontCard extends React.Component {
   render() {
     const { family, url, fontIsLoaded, exampleText, fontSize } = this.props;
     return (
-      <FontCardContainer
-        ref={this.ref}
-        data-url={url}
-        fontIsLoaded={fontIsLoaded}
-      >
+      <FontCardContainer ref={this.ref} data-url={url}>
         <FontCardHeader>
           {family}
           <AddButton />
