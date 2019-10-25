@@ -1,7 +1,6 @@
 import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
 
 import Header from "./components/Header";
 import OptionsBar from "./components/OptionsBar";
@@ -180,9 +179,6 @@ class App extends React.Component {
     } = this.state;
     return (
       <ThemeProvider theme={Theme}>
-        <Helmet>
-          <title>Favourite Fonts - subject026</title>
-        </Helmet>
         <GlobalStyle />
         <Header />
         <OptionsBar
