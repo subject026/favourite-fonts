@@ -1,8 +1,8 @@
 import React from "react";
 
-const ResetIcon = () => {
+const AddButton = () => {
   return (
-    <div>
+    <button>
       <svg width="24" height="24" fill="none">
         <path fill="#fff" d="M0 0h24v24H0z" />
         <path
@@ -13,8 +13,8 @@ const ResetIcon = () => {
           fillOpacity=".54"
         />
       </svg>
-    </div>
+    </button>
   );
 };
 
-export default ResetIcon;
+export default AddButton;
