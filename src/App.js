@@ -126,7 +126,6 @@ class App extends React.Component {
 
   handleFontSizeChange = event => {
     const { value } = event.target;
-    console.log("boom");
     this.setState(state => {
       return {
         ...state,
@@ -183,10 +182,6 @@ class App extends React.Component {
         <CardGrid>
           {filteredFonts.map(font => {
             const fontLoadRequested = fontUrls.includes(font.url);
-            // console.log(
-            //   `\n\nrendering:   ${font.family} - load already requested? `,
-            //   fontLoadRequested
-            // );
             const fontIsLoaded = loadedFonts.includes(font.url);
             return (
               <FontCard
