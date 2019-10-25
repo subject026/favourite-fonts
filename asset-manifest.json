@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/favourite-fonts/static/js/main.cbc7651e.chunk.js",
-    "main.js.map": "/favourite-fonts/static/js/main.cbc7651e.chunk.js.map",
+    "main.js": "/favourite-fonts/static/js/main.50e1221a.chunk.js",
+    "main.js.map": "/favourite-fonts/static/js/main.50e1221a.chunk.js.map",
     "runtime-main.js": "/favourite-fonts/static/js/runtime-main.905ceab4.js",
     "runtime-main.js.map": "/favourite-fonts/static/js/runtime-main.905ceab4.js.map",
-    "static/js/2.706afc61.chunk.js": "/favourite-fonts/static/js/2.706afc61.chunk.js",
-    "static/js/2.706afc61.chunk.js.map": "/favourite-fonts/static/js/2.706afc61.chunk.js.map",
+    "static/js/2.7c06f5f9.chunk.js": "/favourite-fonts/static/js/2.7c06f5f9.chunk.js",
+    "static/js/2.7c06f5f9.chunk.js.map": "/favourite-fonts/static/js/2.7c06f5f9.chunk.js.map",
     "index.html": "/favourite-fonts/index.html",
-    "precache-manifest.d90404264a3236c0fb0d65e458523d2b.js": "/favourite-fonts/precache-manifest.d90404264a3236c0fb0d65e458523d2b.js",
+    "precache-manifest.353d68c70914ef45d9287d68d5924586.js": "/favourite-fonts/precache-manifest.353d68c70914ef45d9287d68d5924586.js",
     "service-worker.js": "/favourite-fonts/service-worker.js"
   },
   "entrypoints": [
     "static/js/runtime-main.905ceab4.js",
-    "static/js/2.706afc61.chunk.js",
-    "static/js/main.cbc7651e.chunk.js"
+    "static/js/2.7c06f5f9.chunk.js",
+    "static/js/main.50e1221a.chunk.js"
   ]
 }
