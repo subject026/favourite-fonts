@@ -39,7 +39,10 @@ export const OptionsBar = ({
   return (
     <OptionsBarOuter>
       <OptionsBarInner>
-        <SearchInput value={searchText} onChange={handleSearchTextChange} />
+        <SearchInput
+          value={searchText}
+          handleSearchTextChange={handleSearchTextChange}
+        />
         <SampleTextInput
           value={exampleText}
           handleExampleTextChange={handleExampleTextChange}
