@@ -2,13 +2,12 @@ import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
+import getFonts from "./network/getFonts";
 import Header from "./components/Header";
 import OptionsBar from "./components/OptionsBar";
-
-import getFonts from "./network/getFonts";
-
 import FontCard from "./components/FontCard/index";
 import FontLink from "./components/FontLink";
+import { BackToTopButton } from "./components/Buttons/index";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -46,14 +45,6 @@ export const CardGrid = styled.section`
   }
 `;
 
-const BackToTopButton = styled.button`
-  padding: 30px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: ${props => (props.windowAtTop ? "none" : "inline")};
-`;
-
 const initialState = {
   exampleText: "Then came the night of the first fallen star.",
   searchText: "",
@@ -79,7 +70,7 @@ class App extends React.Component {
 
   handleWindowScroll = () => {
     const { windowAtTop } = this.state;
-    if (windowAtTop && window.scrollY > 50) {
+    if (windowAtTop && window.scrollY > 100) {
       this.setState(state => {
         return {
           ...state,
@@ -224,7 +215,7 @@ class App extends React.Component {
         <GlobalStyle />
         <BackToTopButton
           windowAtTop={windowAtTop}
-          onClick={this.handleBackToTopClick}
+          handleBackToTopClick={this.handleBackToTopClick}
         >
           back to top
         </BackToTopButton>

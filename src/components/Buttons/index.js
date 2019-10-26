@@ -27,6 +27,30 @@ const Button = styled.button`
   }
 `;
 
+const BackToTopButtonStyled = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  transition: background-color 0.1s linear, transform 0.3s linear;
+  ${props =>
+    props.windowAtTop
+      ? `transform: translateY(200px)`
+      : `transform: translateY(0)`};
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+`;
+
 export const ResetButton = ({ handleOptionsReset }) => {
   return (
     <Button type="reset" onClick={handleOptionsReset}>
@@ -50,3 +74,18 @@ export const AddButton = () => {
     </Button>
   );
 };
+
+export const BackToTopButton = ({ windowAtTop, handleBackToTopClick }) => (
+  <BackToTopButtonStyled
+    windowAtTop={windowAtTop}
+    onClick={handleBackToTopClick}
+  >
+    <svg width="24" height="24">
+      <path
+        d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
+        fill="#000"
+        fill-opacity=".54"
+      />
+    </svg>
+  </BackToTopButtonStyled>
+);
