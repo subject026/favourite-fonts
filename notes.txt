@@ -1,9 +1,5 @@
-STILL TO DO
-===========
-
->>> add back to top button
-
----
+Extras?
+=======
 
 >>> add grid/list button
 >>> add light/darkmode button
