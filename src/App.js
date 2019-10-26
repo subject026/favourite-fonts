@@ -216,9 +216,7 @@ class App extends React.Component {
         <BackToTopButton
           windowAtTop={windowAtTop}
           handleBackToTopClick={this.handleBackToTopClick}
-        >
-          back to top
-        </BackToTopButton>
+        />
         <Header />
         <OptionsBar
           searchText={searchText}
