@@ -41,6 +41,9 @@ const BackToTopButtonStyled = styled.button`
   border-radius: 50%;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   transition: background-color 0.1s linear, transform 0.3s linear;
+  path {
+    fill: rgba(0, 0, 0, 0.54);
+  }
   ${props =>
     props.windowAtTop
       ? `transform: translateY(200px)`
@@ -81,11 +84,7 @@ export const BackToTopButton = ({ windowAtTop, handleBackToTopClick }) => (
     onClick={handleBackToTopClick}
   >
     <svg width="24" height="24">
-      <path
-        d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
-        fill="#000"
-        fill-opacity=".54"
-      />
+      <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
     </svg>
   </BackToTopButtonStyled>
 );
