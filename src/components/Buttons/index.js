@@ -8,7 +8,8 @@ const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
-  ${props => (props.type === "reset" ? "transform: translateX(10px);" : "")}
+  ${props =>
+    props.type === "optionsBar" ? "transform: translateX(10px);" : ""}
   path {
     fill: ${props =>
       props.type === "add"
@@ -59,7 +60,7 @@ const BackToTopButtonStyled = styled.button`
 
 export const ResetButton = ({ handleOptionsReset }) => {
   return (
-    <Button type="reset" onClick={handleOptionsReset}>
+    <Button type="optionsBar" onClick={handleOptionsReset}>
       <svg width="24" height="24">
         <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
       </svg>
@@ -70,7 +71,7 @@ export const ResetButton = ({ handleOptionsReset }) => {
 export const ViewToggleButton = ({ handleViewToggle, isListView }) => {
   console.log(isListView);
   return (
-    <Button onClick={handleViewToggle}>
+    <Button type="optionsBar" onClick={handleViewToggle}>
       {isListView && (
         <svg width="24" height="24">
           <path d="M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z" />
