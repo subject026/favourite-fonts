@@ -69,7 +69,6 @@ export const ResetButton = ({ handleOptionsReset }) => {
 };
 
 export const ViewToggleButton = ({ handleViewToggle, isListView }) => {
-  console.log(isListView);
   return (
     <Button type="optionsBar" onClick={handleViewToggle}>
       {isListView && (
