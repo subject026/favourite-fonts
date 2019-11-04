@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+import { css } from "styled-components";
 
 import getFonts from "./network/getFonts";
 import Header from "./components/Header";
@@ -37,12 +38,17 @@ export const CardGrid = styled.section`
   grid-gap: 30px;
   padding: 30px ${({ theme }) => theme.layout.padding};
   grid-template-columns: minmax(0, 1fr);
-  @media (min-width: 600px) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-  @media (min-width: 1100px) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  }
+  ${props =>
+    !props.isListView
+      ? css`
+          @media (min-width: 600px) {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          }
+          @media (min-width: 1100px) {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+          }
+        `
+      : ``}
 `;
 
 const initialState = {
@@ -252,7 +258,7 @@ class App extends React.Component {
             />
           );
         })}
-        <CardGrid>
+        <CardGrid isListView={isListView}>
           {filteredFonts.map(font => {
             const fontLoadRequested = fontUrls.includes(font.url);
             const fontIsLoaded = loadedFonts.includes(font.url);
