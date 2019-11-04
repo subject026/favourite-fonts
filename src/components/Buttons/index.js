@@ -73,14 +73,12 @@ export const ViewToggleButton = ({ handleViewToggle, isListView }) => {
     <Button onClick={handleViewToggle}>
       {isListView && (
         <svg width="24" height="24">
-          <path d="M0 0h24v24H0V0z" />
-          <path d="M3 5v14h17V5H3zm4 2v2H5V7h2zm-2 6v-2h2v2H5zm0 2h2v2H5v-2zm13 2H9v-2h9v2zm0-4H9v-2h9v2zm0-4H9V7h9v2z" />
+          <path d="M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z" />
         </svg>
       )}
       {!isListView && (
         <svg width="24" height="24">
-          <path d="M0 0h24v24H0V0z" />
-          <path d="M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z" />
+          <path d="M3 5v14h17V5H3zm4 2v2H5V7h2zm-2 6v-2h2v2H5zm0 2h2v2H5v-2zm13 2H9v-2h9v2zm0-4H9v-2h9v2zm0-4H9V7h9v2z" />
         </svg>
       )}
     </Button>
