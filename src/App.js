@@ -91,6 +91,15 @@ class App extends React.Component {
   async componentDidMount() {
     window.onscroll = this.handleWindowScroll;
 
+    document.fonts.onloadingdone = function(fontFaceSetEvent) {
+      console.log(
+        "onloadingdone.... we have " +
+          fontFaceSetEvent.fontfaces.length +
+          " font faces loaded"
+      );
+      console.log(fontFaceSetEvent.fontfaces);
+    };
+
     const allFonts = await getFonts();
     // !!! do something to handle this
     // if API call fails this will return undefined
