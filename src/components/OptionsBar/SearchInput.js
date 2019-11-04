@@ -5,7 +5,7 @@ import SearchIcon from "./SearchIcon";
 
 const SearchInputContainer = styled.label`
   display: grid;
-  grid-template-columns: 30px auto;
+  grid-template-columns: 30px minmax(0, 1fr);
 `;
 
 const Input = styled.input`

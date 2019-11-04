@@ -19,7 +19,11 @@ const OptionsBarInner = styled.section`
     border-radius: 50px;
     padding: 0px ${theme.layout.padding};
     display: grid;
-    grid-template-columns: 300px minmax(0, 5fr) 100px 50px 50px;
+    grid-gap: 1px;
+    grid-template-columns: minmax(0, 1fr) 50px;
+    @media (min-width: 600px) {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 5fr) 100px 50px 50px;
+    }
     border: 1px solid ${theme.colors.lightestGrey};
     input {
       border: none;
