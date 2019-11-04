@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { css } from "styled-components";
 
 const Button = styled.button`
   display: flex;
@@ -26,6 +27,14 @@ const Button = styled.button`
           : "rgba(0, 0, 0, 0.74)"};
     }
   }
+  ${props =>
+    props.hideOnSmallScreen
+      ? css`
+          @media (max-width: 600px) {
+            display: none;
+          }
+        `
+      : ``}
 `;
 
 const BackToTopButtonStyled = styled.button`
@@ -70,7 +79,11 @@ export const ResetButton = ({ handleOptionsReset }) => {
 
 export const ViewToggleButton = ({ handleViewToggle, isListView }) => {
   return (
-    <Button type="optionsBar" onClick={handleViewToggle}>
+    <Button
+      type="optionsBar"
+      hideOnSmallScreen={true}
+      onClick={handleViewToggle}
+    >
       {isListView && (
         <svg width="24" height="24">
           <path d="M4 5v13h17V5H4zm10 2v3.5h-3V7h3zM6 7h3v3.5H6V7zm0 9v-3.5h3V16H6zm5 0v-3.5h3V16h-3zm8 0h-3v-3.5h3V16zm-3-5.5V7h3v3.5h-3z" />

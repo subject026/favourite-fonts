@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { css } from "styled-components";
 
 const Select = styled.select`
   padding: 0 15px;
@@ -12,6 +13,14 @@ const Select = styled.select`
   &:focus {
     color: ${props => props.theme.colors.darkGrey};
   }
+  ${props =>
+    props.hideOnSmallScreen
+      ? css`
+          @media (max-width: 600px) {
+            display: none;
+          }
+        `
+      : ``}
 `;
 
 const FontSizeSelect = ({ fontSize, handleFontSizeChange }) => {
@@ -21,6 +30,7 @@ const FontSizeSelect = ({ fontSize, handleFontSizeChange }) => {
       id="font-size"
       value={fontSize}
       onChange={handleFontSizeChange}
+      hideOnSmallScreen={true}
     >
       <option value="20px">20px</option>
       <option value="24px">24px</option>
