@@ -48,7 +48,8 @@ export const CardGrid = styled.section`
 const initialState = {
   exampleText: "Then came the night of the first fallen star.",
   searchText: "",
-  fontSize: "40px"
+  fontSize: "40px",
+  isListView: false
 };
 
 class App extends React.Component {
@@ -183,6 +184,16 @@ class App extends React.Component {
     });
   };
 
+  handleViewToggle = () => {
+    this.setState(state => {
+      const { isListView } = state;
+      return {
+        ...state,
+        isListView: !isListView
+      };
+    });
+  };
+
   handleOptionsReset = () => {
     this.setState(state => {
       return {
@@ -208,7 +219,8 @@ class App extends React.Component {
       loadedFonts,
       searchText,
       exampleText,
-      fontSize
+      fontSize,
+      isListView
     } = this.state;
     return (
       <ThemeProvider theme={Theme}>
@@ -224,9 +236,11 @@ class App extends React.Component {
             exampleText === initialState.exampleText ? "" : exampleText
           }
           fontSize={fontSize}
+          isListView={isListView}
           handleSearchTextChange={this.handleSearchTextChange}
           handleExampleTextChange={this.handleExampleTextChange}
           handleFontSizeChange={this.handleFontSizeChange}
+          handleViewToggle={this.handleViewToggle}
           handleOptionsReset={this.handleOptionsReset}
         />
         {fontUrls.map(url => {

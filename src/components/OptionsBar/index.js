@@ -4,7 +4,7 @@ import { css } from "styled-components";
 
 import SearchInput from "./SearchInput";
 import SampleTextInput from "./SampleTextInput";
-import { ResetButton } from "../Buttons";
+import { ViewToggleButton, ResetButton } from "../Buttons";
 import FontSizeSelect from "./FontSizeSelect";
 
 const OptionsBarOuter = styled.section`
@@ -31,9 +31,11 @@ export const OptionsBar = ({
   searchText,
   exampleText,
   fontSize,
+  isListView,
   handleSearchTextChange,
   handleExampleTextChange,
   handleFontSizeChange,
+  handleViewToggle,
   handleOptionsReset
 }) => {
   return (
@@ -50,6 +52,10 @@ export const OptionsBar = ({
         <FontSizeSelect
           fontSize={fontSize}
           handleFontSizeChange={handleFontSizeChange}
+        />
+        <ViewToggleButton
+          isListView={isListView}
+          handleViewToggle={handleViewToggle}
         />
         <ResetButton handleOptionsReset={handleOptionsReset} />
       </OptionsBarInner>
