@@ -56,10 +56,10 @@ class Header extends React.Component {
           Favourite <span>fonts</span>
         </Logo>
         <nav>
-          <a href="#">CATALOGUE</a>
-          <a href="#">FEATURED</a>
-          <a href="#">ARTICLES</a>
-          <a href="#">ABOUT</a>
+          <a href="https://subject026.github.io/favourite-fonts">CATALOGUE</a>
+          <a href="https://subject026.github.io/favourite-fonts">FEATURED</a>
+          <a href="https://subject026.github.io/favourite-fonts">ARTICLES</a>
+          <a href="https://subject026.github.io/favourite-fonts">ABOUT</a>
         </nav>
       </HeaderStyled>
     );
