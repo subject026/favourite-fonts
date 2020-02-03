@@ -1,5 +1,0 @@
-Extras?
-=======
-
->>> add grid/list button
->>> add light/darkmode button
