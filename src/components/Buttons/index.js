@@ -35,6 +35,15 @@ const Button = styled.button`
           }
         `
       : ``}
+  /* nav toggle */
+  ${props =>
+    props.type === "navToggle"
+      ? css`
+          @media (min-width: 730px) {
+            display: none;
+          }
+        `
+      : ``}
 `;
 
 const BackToTopButtonStyled = styled.button`
@@ -63,6 +72,14 @@ const BackToTopButtonStyled = styled.button`
     background-color: #eee;
   }
 `;
+
+export const NavToggleButton = ({ handleNavToggle }) => {
+  return (
+    <Button type="navToggle" onClick={handleNavToggle}>
+      navToggle
+    </Button>
+  );
+};
 
 // Options Bar Buttons
 //

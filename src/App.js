@@ -9,6 +9,7 @@ import OptionsBar from "./components/OptionsBar";
 import FontCard from "./components/FontCard/index";
 import FontLink from "./components/FontLink";
 import { BackToTopButton } from "./components/Buttons/index";
+import { someMixin } from "./mixins";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -32,6 +33,24 @@ export const Theme = {
     red: "rgba(255, 82, 82, 1)"
   }
 };
+
+const Overlay = styled.div`
+  ${({ navIsHidden }) => css`
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(20, 20, 20, 0.6);
+    ${navIsHidden
+      ? css`
+          display: none;
+        `
+      : ``}
+    @media (min-width: 730px) {
+      /* testing something here... this function just returns "display: none;"  */
+      ${someMixin()}
+    }
+  `}
+`;
 
 export const CardGrid = styled.section`
   display: grid;
@@ -62,6 +81,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      navIsHidden: true,
       windowAtTop: true,
       allFonts: [],
       filteredFonts: [],
@@ -74,6 +94,16 @@ class App extends React.Component {
       rootMargin: "600px"
     });
   }
+
+  handleNavToggle = () => {
+    this.setState(state => {
+      const { navIsHidden } = state;
+      console.log("nav is hidden: ", navIsHidden);
+      return {
+        navIsHidden: !navIsHidden
+      };
+    });
+  };
 
   handleWindowScroll = () => {
     const { windowAtTop } = this.state;
@@ -219,6 +249,7 @@ class App extends React.Component {
 
   render() {
     const {
+      navIsHidden,
       windowAtTop,
       filteredFonts,
       fontUrls,
@@ -235,8 +266,12 @@ class App extends React.Component {
           windowAtTop={windowAtTop}
           handleBackToTopClick={this.handleBackToTopClick}
         />
-        <Header />
-        <OptionsBar
+        <Overlay onClick={this.handleNavToggle} navIsHidden={navIsHidden} />
+        <Header
+          navIsHidden={navIsHidden}
+          handleNavToggle={this.handleNavToggle}
+        />
+        {/* <OptionsBar
           searchText={searchText}
           exampleText={
             exampleText === initialState.exampleText ? "" : exampleText
@@ -275,7 +310,7 @@ class App extends React.Component {
               />
             );
           })}
-        </CardGrid>
+        </CardGrid> */}
       </ThemeProvider>
     );
   }
