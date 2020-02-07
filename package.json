@@ -2,13 +2,14 @@
   "name": "favourite-fonts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://subject026.github.io/favourite-fonts/",
+  "homepagex": "https://subject026.github.io/favourite-fonts/",
+  "homepage": "https://localhost:5000",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
-    "serve": "^11.2.0",
+    "serve": "^11.3.0",
     "styled-components": "^4.4.0"
   },
   "scripts": {
