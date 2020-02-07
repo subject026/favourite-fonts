@@ -76,7 +76,13 @@ const BackToTopButtonStyled = styled.button`
 export const NavToggleButton = ({ handleNavToggle }) => {
   return (
     <Button type="navToggle" onClick={handleNavToggle}>
-      navToggle
+      <svg width="24" height="24">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M3 8V6h18v2H3zm0 5h18v-2H3v2zm0 5h18v-2H3v2z"
+        />
+      </svg>
     </Button>
   );
 };
