@@ -4,6 +4,7 @@ import { css } from "styled-components";
 
 import { NavToggleButton } from "../Buttons/index";
 import Logo from "./Logo";
+import { $nav_transition } from "../../mixins";
 
 const HeaderStyled = styled.header`
   ${({ theme }) => {
@@ -25,14 +26,18 @@ const Nav = styled.nav`
   ${({ theme, navIsHidden }) => {
     return css`
       position: fixed;
+      top: 0;
+      left: 0;
       height: 100vh;
       display: flex;
       width: 300px;
       flex-direction: column;
       background-color: white;
-      ${navIsHidden
+      transform: translateX(-110%);
+      transition: ${$nav_transition};
+      ${!navIsHidden
         ? css`
-            transform: translateX(-110%);
+            transform: translateX(0);
           `
         : ``}
       @media (min-width: 730px) {

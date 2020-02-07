@@ -9,7 +9,7 @@ import OptionsBar from "./components/OptionsBar";
 import FontCard from "./components/FontCard/index";
 import FontLink from "./components/FontLink";
 import { BackToTopButton } from "./components/Buttons/index";
-import { someMixin } from "./mixins";
+import { $nav_transition } from "./mixins";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -40,14 +40,15 @@ const Overlay = styled.div`
     width: 100%;
     height: 100vh;
     background-color: rgba(20, 20, 20, 0.6);
+    transition: opacity ${$nav_transition}, visibility ${$nav_transition};
     ${navIsHidden
       ? css`
-          display: none;
+          opacity: 0;
+          visibility: hidden;
         `
       : ``}
     @media (min-width: 730px) {
-      /* testing something here... this function just returns "display: none;"  */
-      ${someMixin()}
+      display: none;
     }
   `}
 `;
@@ -98,7 +99,6 @@ class App extends React.Component {
   handleNavToggle = () => {
     this.setState(state => {
       const { navIsHidden } = state;
-      console.log("nav is hidden: ", navIsHidden);
       return {
         navIsHidden: !navIsHidden
       };
@@ -271,7 +271,7 @@ class App extends React.Component {
           navIsHidden={navIsHidden}
           handleNavToggle={this.handleNavToggle}
         />
-        {/* <OptionsBar
+        <OptionsBar
           searchText={searchText}
           exampleText={
             exampleText === initialState.exampleText ? "" : exampleText
@@ -310,7 +310,7 @@ class App extends React.Component {
               />
             );
           })}
-        </CardGrid> */}
+        </CardGrid>
       </ThemeProvider>
     );
   }
