@@ -5,6 +5,8 @@ import { css } from "styled-components";
 const Logo = styled.span`
   ${({ theme, navLogo }) => {
     return css`
+      display: flex;
+      align-items: center;
       font-size: 22px;
       font-weight: 800;
       color: ${theme.colors.medGrey};
@@ -28,7 +30,7 @@ const Logo = styled.span`
 export default props => {
   return (
     <Logo {...props}>
-      Favourite <span>fonts</span>
+      Favourite<span>&nbsp;fonts</span>
     </Logo>
   );
 };
