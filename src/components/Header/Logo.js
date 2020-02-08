@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
 
+import { width } from "../../mixins";
+
 const Logo = styled.span`
   ${({ theme, navLogo }) => {
     return css`
@@ -15,14 +17,14 @@ const Logo = styled.span`
       }
       ${navLogo
         ? css`
-            @media (min-width: 730px) {
+            padding: 0 15px;
+            border-bottom: 1px solid ${theme.colors.lightestGrey};
+            height: 56px;
+            ${width.from730px(css`
               display: none;
-            }
+            `)}
           `
         : ``}
-      @media (min-width: 730px) {
-        font-size: 30px;
-      }
     `;
   }}
 `;
@@ -30,7 +32,7 @@ const Logo = styled.span`
 export default props => {
   return (
     <Logo {...props}>
-      Favourite<span>&nbsp;fonts</span>
+      spoogle<span>&nbsp;fonts</span>
     </Logo>
   );
 };

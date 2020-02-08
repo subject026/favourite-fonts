@@ -39,6 +39,7 @@ const Button = styled.button`
   ${props =>
     props.type === "navToggle"
       ? css`
+          margin-right: 20px;
           @media (min-width: 730px) {
             display: none;
           }

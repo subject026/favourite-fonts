@@ -6,10 +6,15 @@ import SearchInput from "./SearchInput";
 import SampleTextInput from "./SampleTextInput";
 import { ViewToggleButton, ResetButton } from "../Buttons";
 import FontSizeSelect from "./FontSizeSelect";
+import { width } from "../../mixins";
 
 const OptionsBarOuter = styled.section`
   ${({ theme }) => css`
     padding: 20px ${theme.layout.padding};
+    ${width.from600px(css`
+      padding-left: 30px;
+      padding-right: 30px;
+    `)}
   `}
 `;
 
