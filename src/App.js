@@ -9,13 +9,13 @@ import OptionsBar from "./components/OptionsBar";
 import FontCard from "./components/FontCard/index";
 import FontLink from "./components/FontLink";
 import { BackToTopButton } from "./components/Buttons/index";
-import { $nav_transition } from "./mixins";
+import { $nav_transition, width } from "./mixins";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 `;
 
@@ -39,7 +39,8 @@ const Overlay = styled.div`
     position: fixed;
     width: 100%;
     height: 100vh;
-    background-color: rgba(20, 20, 20, 0.6);
+    background-color: rgb(33, 33, 33);
+    opacity: 0.48;
     transition: opacity ${$nav_transition}, visibility ${$nav_transition};
     ${navIsHidden
       ? css`
@@ -58,6 +59,10 @@ export const CardGrid = styled.section`
   grid-gap: 30px;
   padding: 30px ${({ theme }) => theme.layout.padding};
   grid-template-columns: minmax(0, 1fr);
+  ${width.from600px(css`
+    padding-left: 30px;
+    padding-right: 30px;
+  `)}
   ${props =>
     !props.isListView
       ? css`
