@@ -50,26 +50,7 @@ const Nav = styled.nav`
         padding: 0;
         margin: 4px 0 0 0;
       }
-      a {
-        display: inline-block;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        font-weight: 500;
-        text-decoration: none;
-        color: ${theme.colors.lightGrey};
-        &:hover {
-        color: ${theme.colors.medGrey};
-        }
-        svg {
-          margin-left: 15px;
-          margin-right: 24px;
-          @media (min-width: 730px) {
-            display: none;
-          }
-        }
-      }
+      
       ${
         !navIsHidden
           ? css`
@@ -89,14 +70,45 @@ const Nav = styled.nav`
           display: inline-block;
           margin-left: 30px;
         }
-        a {
-          font-weight: 500;
-          text-transform: uppercase;
-        }
       `)}        
       }
     `;
   }}
+`;
+
+const NavLink = styled.a`
+  ${({ theme, currentPage }) => css`
+    display: inline-block;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: ${theme.colors.lightGrey};
+    ${
+      currentPage
+        ? css`
+            color: ${theme.colors.lightRed};
+          `
+        : ``
+    }
+    &:hover {
+      color: ${theme.colors.medGrey};
+    }
+    svg {
+      margin-left: 15px;
+      margin-right: 24px;      
+    }
+    ${width.from730px(css`
+      font-weight: 500;
+      text-transform: uppercase;
+      svg {
+        display: none;
+      }
+    `)}        
+      }
+  `}
 `;
 
 class Header extends React.Component {
@@ -112,28 +124,28 @@ class Header extends React.Component {
           <Logo navLogo={true} />
           <ul>
             <li>
-              <a href="/">
+              <NavLink currentPage={true} href="/">
                 <HouseIcon />
-                Catalogue
-              </a>
+                Catalog
+              </NavLink>
             </li>
             <li>
-              <a href="/">
+              <NavLink href="/">
                 <StarIcon />
                 Featured
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="/">
+              <NavLink href="/">
                 <NotepadIcon />
                 Articles
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="/">
+              <NavLink href="/">
                 <InfoIcon />
                 About
-              </a>
+              </NavLink>
             </li>
           </ul>
         </Nav>

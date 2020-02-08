@@ -78,11 +78,7 @@ export const NavToggleButton = ({ handleNavToggle }) => {
   return (
     <Button type="navToggle" onClick={handleNavToggle}>
       <svg width="24" height="24">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M3 8V6h18v2H3zm0 5h18v-2H3v2zm0 5h18v-2H3v2z"
-        />
+        <path d="M3 8V6h18v2H3zm0 5h18v-2H3v2zm0 5h18v-2H3v2z" />
       </svg>
     </Button>
   );
@@ -126,11 +122,7 @@ export const AddButton = () => {
   return (
     <Button type="add">
       <svg width="24" height="24">
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm11 1h4v-2h-4V7h-2v4H7v2h4v4h2v-4z"
-        />
+        <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm11 1h4v-2h-4V7h-2v4H7v2h4v4h2v-4z" />
       </svg>
     </Button>
   );

@@ -32,7 +32,7 @@ const Logo = styled.span`
 export default props => {
   return (
     <Logo {...props}>
-      spoogle<span>&nbsp;fonts</span>
+      Spoogle<span>&nbsp;Fonts</span>
     </Logo>
   );
 };

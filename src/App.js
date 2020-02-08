@@ -300,14 +300,16 @@ class App extends React.Component {
         })}
         <CardGrid isListView={isListView}>
           {filteredFonts.map(font => {
-            const fontLoadRequested = fontUrls.includes(font.url);
             const fontIsLoaded = loadedFonts.includes(font.url);
+            const fontIsLoading = fontIsLoaded
+              ? false
+              : fontUrls.includes(font.url);
             return (
               <FontCard
                 key={`${font.family}_card`}
                 family={font.family}
                 url={font.url}
-                fontLoadRequested={fontLoadRequested}
+                fontIsLoading={fontIsLoading}
                 fontIsLoaded={fontIsLoaded}
                 addObserverTarget={this.addObserverTarget}
                 exampleText={exampleText}

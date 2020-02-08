@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
+import { Ellipsis } from "react-awesome-spinners";
 
 import { AddButton } from "../Buttons";
 
@@ -11,6 +12,14 @@ const FontCardContainer = styled.div`
       border-top: 1px solid ${({ theme }) => theme.colors.lighterGrey};
     `;
   }}
+`;
+
+const SpinnerContainer = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const FontCardHeader = styled.div`
@@ -34,9 +43,9 @@ class FontCard extends React.Component {
     this.initialExampleText = props.exampleText;
   }
   componentDidMount = () => {
-    const { fontLoadRequested } = this.props;
+    const { fontIsLoading } = this.props;
     // Only need to observe if font hasn't yet been loaded
-    if (!fontLoadRequested) this.props.addObserverTarget(this.ref.current);
+    if (!fontIsLoading) this.props.addObserverTarget(this.ref.current);
   };
 
   componentDidUpdate = () => {
@@ -49,14 +58,25 @@ class FontCard extends React.Component {
   };
 
   render() {
-    const { family, url, fontIsLoaded, exampleText, fontSize } = this.props;
+    const {
+      family,
+      url,
+      fontIsLoading,
+      fontIsLoaded,
+      exampleText,
+      fontSize
+    } = this.props;
     return (
       <FontCardContainer ref={this.ref} data-url={url}>
         <FontCardHeader>
           {family}
           <AddButton />
         </FontCardHeader>
-        {!fontIsLoaded && <h3>Loading...</h3>}
+        {fontIsLoading && (
+          <SpinnerContainer>
+            <Ellipsis color="lightgrey" />
+          </SpinnerContainer>
+        )}
         {fontIsLoaded && (
           <Sampletext
             contentEditable={true}
