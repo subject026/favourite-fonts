@@ -2,8 +2,8 @@
   "name": "favourite-fonts",
   "version": "0.1.0",
   "private": true,
-  "homepagex": "https://subject026.github.io/favourite-fonts/",
-  "homepage": "https://localhost:5000",
+  "homepage": "https://subject026.github.io/favourite-fonts/",
+  "homepagex": "https://localhost:5000",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.10.2",
